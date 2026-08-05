@@ -1,0 +1,28 @@
+﻿original,prepared
+Respondent,resp.id
+Draw,draw
+Ban on the construction of new fossil fuel power plants without CCS in your state.,policytypeban
+Government subsidies for CCS in your state.,policytypesubsidies
+Increase in taxes on fossil fuel power generation without CCS in your state.,policytypetax
+4$,cost4
+9$,cost9
+14$,cost14
+19$,cost19
+2025,year2025
+2035,year2035
+2045,year2045
+2055,year2055
+2 miles,distance2
+5 miles,distance5
+10 miles,distance10
+50 miles,distance50
+Carbon Capture Coalition,orgccc
+Greenpeace,orggreenpeace
+Democratic Party,orgdp
+Republican Party,orgrp
+1%,adopters0.01
+23%,adopters0.23
+45%,adopters0.45
+76%,adopters0.76
+98%,adopters0.98
+NONE,none

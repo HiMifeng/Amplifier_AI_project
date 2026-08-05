@@ -1,0 +1,19 @@
+﻿original,prepared
+Respondent,resp.id
+Draw,draw
+Mobile only,accessibilitymobile
+Web accessible,accessibilityweb
+Simple authentication,authenticationsimple
+Two-factor authentication:,authenticationtwo_factor
+Multi-factor authentication,authenticationmulti_factor
+Low,customisationlow
+Medium,customisationmedium
+High,customisationhigh
+Multi-person,videomulti_person
+One-on-One,videoone_to_one
+1%,adopters0.01
+23%,adopters0.23
+45%,adopters0.45
+76%,adopters0.76
+98%,adopters0.98
+NONE,none
