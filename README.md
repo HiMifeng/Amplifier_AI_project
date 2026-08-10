@@ -6,8 +6,8 @@ This folder is the supplementary material accompanying the manuscript. It contai
 code and data needed to reproduce every table and figure in the paper, comparing real human respondents to LLM agents in choice experiments, and simulating diffusion on mixed human-LLM networks.
 
 Reproducing the results means running the pipeline below from scratch, in order, starting from
-the LLM prompting scripts (step 0) through the final figures/tables (steps 1-9) . Note that step 0 requires access to an LLM API (via OpenRouter, see
-below) and will incur API usage costs; steps 1-9 are local computation only and runing fit_choice_model and run_diffusion are computational expensive.
+the LLM prompting scripts (step 0) through the final figures/tables (steps 1-9). Note that step 0 requires access to an LLM API (via OpenRouter, see
+below) and will incur API usage costs; steps 1-9 are local computation only, and running fit_choice_model and run_diffusion is computationally expensive.
 Two conjoint experiments are used throughout the code (folder/variable name -> short label used
 in plots and tables):
 
@@ -28,7 +28,7 @@ in plots and tables):
 6 plot_SM.R                              step 6 (SM robustness-check figures)
 7 get_tables.R                           network + demographics summary tables
 8 plot_network_example.R                 illustrative network schematic figure
-9 plot_diffusion_example.R               minimal worked example of the diffusion simulation
+9 plot_pipeline_example.R                illustrative plots for study procedure
 
 functions/            functions sourced
 data/                 all input and intermediate/output data
@@ -42,12 +42,12 @@ tables/               LaTeX tables produced by script 7
 |:--------------------|:------------|:-------------------------------------------------------------------|
 | `raw answers/`      | step 0 (`0 llm_*.py`) for LLM agents; `*_real.csv` for human subjects | one file per human/LLM condition |
 | `conjoint input/`    | (survey/study design) | Attribute/level definitions and product profile matrices used by the conjoint model |
-| `coefs/`             | script 1    | Per-respondent HB utility coefficients |
-| `thresholds/` `incentives/` `resistances/` | script 2 | Per-respondent adoption thresholds, incentives, resistance measures |
+| `coefs/`             | script 1    | HB utility coefficients |
+| `thresholds/` `incentives/` `resistances/` | script 2 | adoption thresholds, incentives, resistance measures |
 | `prepared_sample/`   | script 3    | Combined `.rda` sample objects (coefs + thresholds + incentives + resistances + profiles), one per condition |
 | `diffusion/`         | script 4 | Network diffusion simulation results |
 | `demographics/`      | prolific survey | Used by step 0 for persona-building and by script 7 for the demographics summary table |
-|`data/network_addhealth/`|source: https://github.com/drguilbe/complexpaths | empirical AddHealth network CSVs (in `AddHealth_Networks_Largest_Components/`) and `sampled_nets.rda`, the fixed 18-network sample used by scripts 4, 7, 8, 9.
+| `data/network_addhealth/` | source: https://github.com/drguilbe/complexpaths | empirical AddHealth network CSVs (in `AddHealth_Networks_Largest_Components/`) and `sampled_nets.rda`, the fixed 18-network sample used by scripts 4, 7, 9. |
 
 
 
@@ -90,12 +90,14 @@ toggling which line is active.
    and real-respondent demographics (N/% per category, per experiment).
    Input: `data/network_addhealth/`, `data/{exp}/demographics/*_real.csv`.
    Output: `tables/network_summary.tex`, `tables/demographics_summary.tex`.
-8. **`8 plot_network_example.R`** -- Illustrative schematic figure (synthetic graph,
-   not real networks) showing human/LLM composition at three AI-proportion
-   values. Needs no input data. Output: `plots/net illustration.png`.
-9. **`9 plot_diffusion_example.R`** -- Minimal worked example of study procedure: one network, one AI
-   model, one product profile, one seeding strategy, all 6 AI-proportions.
-   Input: same as step 4 (restricted). Output: `data/{exp}/diffusion/diffusion_example.csv`.
+8. **`8 plot_network_example.R`** -- Illustrative schematic figure (synthetic graph) showing human/LLM composition at three AI-proportion
+   values. Input: NONE. Output: `plots/net illustration.png`.
+9. **`9 plot_pipeline_example.R`** -- Create plot for illustrating study procedure.
+   Step 1: simulates one diffusion example.
+   Step 2: draws the threshold, network, and diffusion figures for this example.
+   Input: prepared_sample .rda files, data/network_addhealth/.
+   Output: `data/diffusion_example.csv`, plus `pipeline_example_threshold`,
+   `pipeline_example_network_q00`/`q06`, and `pipeline_example_diffusion` in `plots/`.
 
 ## Dependencies
 

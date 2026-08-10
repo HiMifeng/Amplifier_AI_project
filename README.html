@@ -369,10 +369,10 @@ agents in choice experiments, and simulating diffusion on mixed
 human-LLM networks.</p>
 <p>Reproducing the results means running the pipeline below from
 scratch, in order, starting from the LLM prompting scripts (step 0)
-through the final figures/tables (steps 1-9) . Note that step 0 requires
+through the final figures/tables (steps 1-9). Note that step 0 requires
 access to an LLM API (via OpenRouter, see below) and will incur API
-usage costs; steps 1-9 are local computation only and runing
-fit_choice_model and run_diffusion are computational expensive. Two
+usage costs; steps 1-9 are local computation only, and running
+fit_choice_model and run_diffusion is computationally expensive. Two
 conjoint experiments are used throughout the code (folder/variable name
 -&gt; short label used in plots and tables):</p>
 <table>
@@ -412,7 +412,7 @@ conjoint experiments are used throughout the code (folder/variable name
 6 plot_SM.R                              step 6 (SM robustness-check figures)
 7 get_tables.R                           network + demographics summary tables
 8 plot_network_example.R                 illustrative network schematic figure
-9 plot_diffusion_example.R               minimal worked example of the diffusion simulation
+9 plot_pipeline_example.R                illustrative plots for study procedure
 
 functions/            functions sourced
 data/                 all input and intermediate/output data
@@ -451,14 +451,14 @@ matrices used by the conjoint model</td>
 <tr class="odd">
 <td align="left"><code>coefs/</code></td>
 <td align="left">script 1</td>
-<td align="left">Per-respondent HB utility coefficients</td>
+<td align="left">HB utility coefficients</td>
 </tr>
 <tr class="even">
 <td align="left"><code>thresholds/</code> <code>incentives/</code>
 <code>resistances/</code></td>
 <td align="left">script 2</td>
-<td align="left">Per-respondent adoption thresholds, incentives,
-resistance measures</td>
+<td align="left">adoption thresholds, incentives, resistance
+measures</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>prepared_sample/</code></td>
@@ -484,7 +484,7 @@ the demographics summary table</td>
 <td align="left">empirical AddHealth network CSVs (in
 <code>AddHealth_Networks_Largest_Components/</code>) and
 <code>sampled_nets.rda</code>, the fixed 18-network sample used by
-scripts 4, 7, 8, 9.</td>
+scripts 4, 7, 9.</td>
 </tr>
 </tbody>
 </table>
@@ -544,14 +544,18 @@ demographics (N/% per category, per experiment). Input:
 <code>tables/network_summary.tex</code>,
 <code>tables/demographics_summary.tex</code>.</li>
 <li><strong><code>8 plot_network_example.R</code></strong> –
-Illustrative schematic figure (synthetic graph, not real networks)
-showing human/LLM composition at three AI-proportion values. Needs no
-input data. Output: <code>plots/net illustration.png</code>.</li>
-<li><strong><code>9 plot_diffusion_example.R</code></strong> – Minimal
-worked example of study procedure: one network, one AI model, one
-product profile, one seeding strategy, all 6 AI-proportions. Input: same
-as step 4 (restricted). Output:
-<code>data/{exp}/diffusion/diffusion_example.csv</code>.</li>
+Illustrative schematic figure (synthetic graph) showing human/LLM
+composition at three AI-proportion values. Input: NONE. Output:
+<code>plots/net illustration.png</code>.</li>
+<li><strong><code>9 plot_pipeline_example.R</code></strong> – Create
+plot for illustrating study procedure. Step 1: simulates one diffusion
+example. Step 2: draws the threshold, network, and diffusion figures for
+this example. Input: prepared_sample .rda files,
+data/network_addhealth/. Output:
+<code>data/diffusion_example.csv</code>, plus
+<code>pipeline_example_threshold</code>,
+<code>pipeline_example_network_q00</code>/<code>q06</code>, and
+<code>pipeline_example_diffusion</code> in <code>plots/</code>.</li>
 </ol>
 </div>
 <div id="dependencies" class="section level2">
