@@ -110,11 +110,11 @@ toggling which line is active.
 `DescTools`, `conjointr`, `ChoiceModelR`, `igraph`, `qgraph`, `diffuNet`, `ids`, `FinancialMath`,
 `moments`, `ggplot2`, `ggridges`, `ggsignif`, `cowplot`, `patchwork`, `scales`, `grid`,
 `gridExtra`, `latex2exp`. `conjointr` and `diffuNet` are not on CRAN. `diffuNet` is available at
-`remotes::install_github("HiMifeng/diffuNet")`. `conjointr`'s source is bundled in this repo at
-`pkg/conjointr_0.1.0.tar.gz` and is installed from there (no GitHub access needed); it is described in
+`remotes::install_github("HiMifeng/diffuNet")`. `conjointr`'s source is described in
 Tănase, R., Algesheimer, R. & Mariani, M.S. Integrating behavioural experimental findings into
 dynamical models to inform social change interventions. Nat Hum Behav 10, 873–883 (2026).
-https://doi.org/10.1038/s41562-026-02417-4
+https://doi.org/10.1038/s41562-026-02417-4. We downloaded and bundled in this repo at
+`pkg/conjointr_0.1.0.tar.gz`.
 
 Run **`0 install_packages.R`** once to install every R dependency listed above (CRAN packages,
 `diffuNet`, and the bundled `conjointr`).
