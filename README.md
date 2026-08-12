@@ -5,9 +5,9 @@
 This folder is the supplementary material accompanying the manuscript. It contains the full
 code and data needed to reproduce every table and figure in the paper, comparing real human respondents to LLM agents in choice experiments, and simulating diffusion on mixed human-LLM networks.
 
-Reproducing the results means running the pipeline below from scratch, in order, starting from
-the LLM prompting scripts (step 0) through the final figures/tables (steps 1-9). Note that step 0 requires access to an LLM API (via OpenRouter, see
-below) and will incur API usage costs; steps 1-9 are local computation only, and running fit_choice_model and run_diffusion is computationally expensive.
+The results must be reproduced sequentially, starting with the LLM prompt script (step 0) and proceeding to the final graphs (steps 1-9). Note that 1) the *.py file in step 0 requires access to the LLM API (via OpenRouter, see below) and therefore incurs API usage fees.
+2) Then, run `0 install_packages.R` to install all R dependencies and follow steps 1-9, which involve only local computation. 
+3) Running `fit_choice_model` and `run_diffusion` is computationally demanding.
 Two conjoint experiments are used throughout the code (folder/variable name -> short label used
 in plots and tables):
 
@@ -20,6 +20,7 @@ in plots and tables):
 
 ```
 0 llm_*_prompt*.py                       step 0 -- generate AI "raw answers" via LLM queries
+0 install_packages.R                     installs all R dependencies (run before steps 1-9)
 1 fit_choice_model.R                     step 1
 2 get_threshold_incentives_resistance.R  step 2
 3 prepare_sample_data.R                  step 3
@@ -32,6 +33,7 @@ in plots and tables):
 
 functions/            functions sourced
 data/                 all input and intermediate/output data
+pkg/                  bundled source of non-CRAN R packages (see Dependencies)
 plots/                figures produced by scripts 5-9
 tables/               LaTeX tables produced by script 7
 ```
@@ -61,6 +63,9 @@ toggling which line is active.
    tasks that respondent saw, producing the AI-condition `raw answers/` CSVs consumed by step 1.
    A dry-run mode (no `--key`) is available for testing the prompt construction
    without making API calls.
+   **`0 install_packages.R`** -- Installs every R package listed under Dependencies below
+   (CRAN packages, `diffuNet` from GitHub, and the bundled `conjointr` from `pkg/conjointr_0.1.0.tar.gz`). Run
+   this once before steps 1-9.
 1. **`1 fit_choice_model.R`** -- Fits a hierarchical Bayes choice model to each raw-answer file.
    Input: `data/{exp}/raw answers/*.csv`. Output: `data/{exp}/coefs/*.csv`.
 2. **`2 get_threshold_incentives_resistance.R`** -- Computes adoption thresholds, incentives,
@@ -105,11 +110,14 @@ toggling which line is active.
 `DescTools`, `conjointr`, `ChoiceModelR`, `igraph`, `qgraph`, `diffuNet`, `ids`, `FinancialMath`,
 `moments`, `ggplot2`, `ggridges`, `ggsignif`, `cowplot`, `patchwork`, `scales`, `grid`,
 `gridExtra`, `latex2exp`. `conjointr` and `diffuNet` are not on CRAN. `diffuNet` is available at
-`remotes::install_github("HiMifeng/diffuNet")`. 
-The `conjointr` package is described in
+`remotes::install_github("HiMifeng/diffuNet")`. `conjointr`'s source is bundled in this repo at
+`pkg/conjointr_0.1.0.tar.gz` and is installed from there (no GitHub access needed); it is described in
 Tănase, R., Algesheimer, R. & Mariani, M.S. Integrating behavioural experimental findings into
 dynamical models to inform social change interventions. Nat Hum Behav 10, 873–883 (2026).
 https://doi.org/10.1038/s41562-026-02417-4
+
+Run **`0 install_packages.R`** once to install every R dependency listed above (CRAN packages,
+`diffuNet`, and the bundled `conjointr`).
 
 **Python packages:** `pandas`, `tqdm`, `openrouter` (only required for real, non-dry-run LLM
 calls; stdlib otherwise: `argparse`, `random`, `re`, `time`, `itertools`, `pathlib`).

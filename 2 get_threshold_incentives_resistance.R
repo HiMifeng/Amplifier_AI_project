@@ -34,6 +34,11 @@ profiles.matrix <- as.matrix(profiles.matrix[, -"V1", with=FALSE], rownames=prof
 predictors.map <- fread(file.path(input_folder, "predictors_map.csv"), header=TRUE)
 
 
+# register parallel backend 
+n_cores <- max(1, parallel::detectCores() - 1)
+cl <- parallel::makeCluster(n_cores)
+doParallel::registerDoParallel(cl)
+
 # different realization
 exp_names <- list.files(file.path(data_folder,"coefs"))
 for (exp_name in exp_names){
@@ -82,8 +87,12 @@ for (exp_name in exp_names){
   # ================================================================================
   write.csv(resistances, file=file.path(data_folder,"resistances",exp_name), row.names=FALSE)
 
-  
-  
+
+
 }
+
+# deregister parallel backend
+parallel::stopCluster(cl)
+foreach::registerDoSEQ()
 
 
