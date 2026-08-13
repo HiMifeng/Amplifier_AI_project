@@ -116,7 +116,7 @@ toggling which line is active.
 Tănase, R., Algesheimer, R. & Mariani, M.S. Integrating behavioural experimental findings into
 dynamical models to inform social change interventions. Nat Hum Behav 10, 873–883 (2026).
 https://doi.org/10.1038/s41562-026-02417-4. We downloaded and bundled in this repo at
-`pkg/conjointr_0.1.0.tar.gz`.
+`packages/conjointr_0.1.0.tar.gz`.
 
 Run **`0 install_packages.R`** once to install every R dependency listed above (CRAN packages,
 `diffuNet`, and the bundled `conjointr`).
