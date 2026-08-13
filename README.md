@@ -7,7 +7,7 @@ code and data needed to reproduce every table and figure in the paper, comparing
 
 The results must be reproduced sequentially, starting with the LLM prompt script (step 0) and proceeding to the final graphs (steps 1-9). Note that 1) the *.py file in step 0 requires access to the LLM API (via OpenRouter, see below) and therefore incurs API usage fees.
 2) Then, run `0 install_packages.R` to install all R dependencies and follow steps 1-9, which involve only local computation. 
-3) Running `fit_choice_model` and `run_diffusion` is computationally demanding.
+3) Running `fit_choice_model` and `run_diffusion` is computationally demanding (14 hours and 16 hours, each; details see below).
 Two conjoint experiments are used throughout the code (folder/variable name -> short label used
 in plots and tables):
 
@@ -68,6 +68,7 @@ toggling which line is active.
    this once before steps 1-9.
 1. **`1 fit_choice_model.R`** -- Fits a hierarchical Bayes choice model to each raw-answer file.
    Input: `data/{exp}/raw answers/*.csv`. Output: `data/{exp}/coefs/*.csv`.
+   Running time: 14 hours  (~30 min per raw-answer file x 14 files per experiment x 2 experiments (PS/AA)).
 2. **`2 get_threshold_incentives_resistance.R`** -- Computes adoption thresholds, incentives,
    and resistance from the fitted coefficients.
    Input: `data/{exp}/coefs/`, `data/{exp}/conjoint input/`.
@@ -83,6 +84,7 @@ toggling which line is active.
    (degree/low_th/neigh_susc/rand). 
    Input: `data/{exp}/prepared_sample/`, `data/network_addhealth/`.
    Output: `data/{exp}/diffusion/{exp}_diffusion_result.csv`.
+   Running time: 16 hours (~8 hours x 2 experiments (PS/AA)).
 5. **`5 plot_main.R`** -- Main figures (LLM agents with baseline prompt): variable importance,
    thresholds, adoption rate, partworth estimates, for both experiments.
    Input: `prepared_sample/`, diffusion result CSVs, `conjoint input/`.

@@ -52,12 +52,12 @@ neighborhood.susceptibility<-function(g,thresholds){
 
 get_simple_behavioral<-function(g, thresholds){
   ids<-V(g)$name
-  centrality_df<-data.table(
+  rs_df<-data.table(
     resp.id=ids,
     thresholds=thresholds%>%as.vector(),
     neigh_susc=neighborhood.susceptibility(g, thresholds) %>% as.numeric()
   )
-  return(centrality_df)
+  return(rs_df)
 }
 
 

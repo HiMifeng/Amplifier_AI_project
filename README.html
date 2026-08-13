@@ -374,9 +374,9 @@ OpenRouter, see below) and therefore incurs API usage fees. 2) Then, run
 <code>0 install_packages.R</code> to install all R dependencies and
 follow steps 1-9, which involve only local computation. 3) Running
 <code>fit_choice_model</code> and <code>run_diffusion</code> is
-computationally demanding. Two conjoint experiments are used throughout
-the code (folder/variable name -&gt; short label used in plots and
-tables):</p>
+computationally demanding (14 hours and 16 hours, each; details see
+below). Two conjoint experiments are used throughout the code
+(folder/variable name -&gt; short label used in plots and tables):</p>
 <table>
 <colgroup>
 <col width="21%" />
@@ -513,7 +513,8 @@ Run this once before steps 1-9.</li>
 <li><strong><code>1 fit_choice_model.R</code></strong> – Fits a
 hierarchical Bayes choice model to each raw-answer file. Input:
 <code>data/{exp}/raw answers/*.csv</code>. Output:
-<code>data/{exp}/coefs/*.csv</code>.</li>
+<code>data/{exp}/coefs/*.csv</code>. Running time: 14 hours (~30 min per
+raw-answer file x 14 files per experiment x 2 experiments (PS/AA)).</li>
 <li><strong><code>2 get_threshold_incentives_resistance.R</code></strong>
 – Computes adoption thresholds, incentives, and resistance from the
 fitted coefficients. Input: <code>data/{exp}/coefs/</code>,
@@ -533,7 +534,8 @@ file (5) x AI-proportion (6) x seeding strategy
 (degree/low_th/neigh_susc/rand). Input:
 <code>data/{exp}/prepared_sample/</code>,
 <code>data/network_addhealth/</code>. Output:
-<code>data/{exp}/diffusion/{exp}_diffusion_result.csv</code>.</li>
+<code>data/{exp}/diffusion/{exp}_diffusion_result.csv</code>. Running
+time: 16 hours (~8 hours x 2 experiments (PS/AA)).</li>
 <li><strong><code>5 plot_main.R</code></strong> – Main figures (LLM
 agents with baseline prompt): variable importance, thresholds, adoption
 rate, partworth estimates, for both experiments. Input:
