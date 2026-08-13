@@ -329,7 +329,7 @@ grid <- plot_grid(grid, legend_plot_sm, ncol = 1, rel_heights = c(1, 0.06))
 
 ggsave(
   file.path(output_folder, "SM_combined_thresholds.pdf"),
-  grid, device = cairo_pdf, width = 30, height = 24 * 1.06, units = "in", limitsize = FALSE
+  grid, device = cairo_pdf, width = 30, height = 25, units = "in", limitsize = FALSE
 )
 
 # -----------------------------------------------------------------------------
@@ -374,7 +374,7 @@ grid <- plot_grid(grid, legend_plot_sm, ncol = 1, rel_heights = c(1, 0.06))
 
 ggsave(
   file.path(output_folder, "SM_combined_variable_importance.pdf"),
-  grid, device = cairo_pdf, width = 53, height = 24 * 1.06, units = "in", limitsize = FALSE
+  grid, device = cairo_pdf, width = 53, height = 25, units = "in", limitsize = FALSE
 )
 
 # ----------------------------------------------------------------------
@@ -420,7 +420,7 @@ grid <- plot_grid(grid, legend_plot_sm, ncol = 1, rel_heights = c(1, 0.06))
 
 ggsave(
   file.path(output_folder, "SM_combined_partworth.pdf"),
-  grid, device = cairo_pdf, width = 53, height = 24 * 1.06, units = "in", limitsize = FALSE
+  grid, device = cairo_pdf, width = 53, height = 25, units = "in", limitsize = FALSE
 )
 
 #-----------------------------------------------------------------------------------
@@ -458,6 +458,6 @@ grid <- plot_grid(grid, legend_plot_sm, ncol = 1, rel_heights = c(1, 0.06))
 
 ggsave(
   file.path(output_folder, "SM_combined_threshold_distribution.pdf"),
-  grid, device = cairo_pdf, width = 30, height = 24 * 1.06, units = "in", limitsize = FALSE
+  grid, device = cairo_pdf, width = 30, height = 25, units = "in", limitsize = FALSE
 )
 
